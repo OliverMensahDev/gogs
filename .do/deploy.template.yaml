@@ -1,5 +1,6 @@
-name: gogs
-services:
+spec:
+  name: gogs
+  services:
   - name: web
     git:
       repo_clone_url: https://github.com/OliverMensahDev/gogs.git
@@ -20,8 +21,8 @@ services:
         type: SECRET
       - key: DB_NAME
         value: "${gogs-db.DATABASE}"
-
-databases:
+  databases:
   - name: gogs-db
     engine: PG
     version: "15"
+

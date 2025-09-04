@@ -1,0 +1,27 @@
+name: gogs
+services:
+  - name: web
+    git:
+      repo_clone_url: https://github.com/OliverMensahDev/gogs.git
+      branch: main
+    http_port: 3000
+    run_command: ./gogs web
+    envs:
+      - key: RUN_MODE
+        value: "prod"
+      - key: DB_TYPE
+        value: "postgres"
+      - key: DB_HOST
+        value: "${gogs-db.HOST}:${gogs-db.PORT}"
+      - key: DB_USER
+        value: "${gogs-db.USERNAME}"
+      - key: DB_PASSWD
+        value: "${gogs-db.PASSWORD}"
+        type: SECRET
+      - key: DB_NAME
+        value: "${gogs-db.DATABASE}"
+
+databases:
+  - name: gogs-db
+    engine: PG
+    version: "15"
